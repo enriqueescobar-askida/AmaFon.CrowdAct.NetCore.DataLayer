@@ -68,7 +68,7 @@ namespace Console.DataLayer.Entities
                 entity.HasIndex(e => e.FieldID);
 
                 entity.HasOne(d => d.Charity)
-                    .WithMany(p => p.Activity)
+                    .WithMany(p => p.Activities)
                     .HasForeignKey(d => d.CharityID)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
@@ -89,7 +89,7 @@ namespace Console.DataLayer.Entities
                 entity.HasIndex(e => e.ParticipantStatusID);
 
                 entity.HasOne(d => d.ParticipantStatus)
-                    .WithMany(p => p.ActivityParticipant)
+                    .WithMany(p => p.ActivityParticipants)
                     .HasForeignKey(d => d.ParticipantStatusID)
                     .OnDelete(DeleteBehavior.SetNull);
             });
@@ -128,12 +128,12 @@ namespace Console.DataLayer.Entities
                 entity.HasIndex(e => e.RepresentativeID);
 
                 entity.HasOne(d => d.Field)
-                    .WithMany(p => p.Charity)
+                    .WithMany(p => p.Charities)
                     .HasForeignKey(d => d.FieldID)
                     .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.Representative)
-                    .WithMany(p => p.Charity)
+                    .WithMany(p => p.Charities)
                     .HasForeignKey(d => d.RepresentativeID)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
@@ -147,7 +147,7 @@ namespace Console.DataLayer.Entities
                     .IsUnique();
 
                 entity.HasOne(d => d.Country)
-                    .WithMany(p => p.City)
+                    .WithMany(p => p.Cities)
                     .HasForeignKey(d => d.CountryID)
                     .OnDelete(DeleteBehavior.ClientSetNull);
             });
@@ -194,7 +194,7 @@ namespace Console.DataLayer.Entities
                     .OnDelete(DeleteBehavior.SetNull);
 
                 entity.HasOne(d => d.ResourceType)
-                    .WithMany(p => p.Requirement)
+                    .WithMany(p => p.Requirements)
                     .HasForeignKey(d => d.ResourceTypeID)
                     .OnDelete(DeleteBehavior.SetNull);
             });
