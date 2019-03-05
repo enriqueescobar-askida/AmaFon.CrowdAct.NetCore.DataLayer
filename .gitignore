@@ -1,18 +1,36 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
 
-# Other files and folders
-.settings/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
-
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+/.vs
+/*/.vs
+/*/.vs/*
+/*/obj
+/*/obj/*
+*/obj/*
+/*/*/obj
+/*/*/obj/*
+/*/bin
+/*/bin/*
+*/bin/*
+/*/*/bin
+/*/*/bin/*
+TemporaryGeneratedFile_*.cs
+*.cache
+*.suo
+*.user
+*.dll
+*.xml
+*.pdb
+*._
+*.p7s
+*.ps1
+*.psd1
+*.psm1
+*.exe
+*.force
+*.CopyComplete
+*.FileListAbsolute.*
+*.exe.config
+*.dll.config
