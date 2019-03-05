@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
@@ -16,56 +17,56 @@
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ID", Order = 1, TypeName = "int")]
         // [Index(@"PK_Activity", 1, IsUnique = true, IsClustered = true)]
-        // [Required]
-        // [Key]
-        // [Display(Name = "Id")]
+        [Required]
+        [Key]
+        [Display(Name = "Id")]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the Name
         /// </summary>
         [Column(@"Name", Order = 2, TypeName = "nvarchar(max)")]
-        // [Display(Name = "Name")]
+        [Display(Name = "Name")]
         public string Name { get; set; }
 
         /// <summary>
         /// Gets or sets the Description
         /// </summary>
         [Column(@"Description", Order = 3, TypeName = "nvarchar(max)")]
-        // [Display(Name = "Description")]
+        [Display(Name = "Description")]
         public string Description { get; set; }
 
         /// <summary>
         /// Gets or sets the Picture
         /// </summary>
         [Column(@"Picture", Order = 4, TypeName = "nvarchar(max)")]
-        // [Display(Name = "Picture")]
+        [Display(Name = "Picture")]
         public string Picture { get; set; }
 
         /// <summary>
         /// Gets or sets the MaxParticipantNb
         /// </summary>
         [Column(@"MaxParticipantNb", Order = 5, TypeName = "int")]
-        // [Required]
-        // [Display(Name = "Max participant nb")]
+        [Required]
+        [Display(Name = "Max participant nb")]
         public int MaxParticipantNb { get; set; }
 
         /// <summary>
         /// Gets or sets the StartingDate
         /// </summary>
         [Column(@"StartingDate", Order = 6, TypeName = "datetime2")]
-        // [Required]
-        // [DataType(DataType.DateTime)]
-        // [Display(Name = "Starting date")]
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Starting date")]
         public DateTime StartingDate { get; set; }
 
         /// <summary>
         /// Gets or sets the EndingDate
         /// </summary>
         [Column(@"EndingDate", Order = 7, TypeName = "datetime2")]
-        // [Required]
-        // [DataType(DataType.DateTime)]
-        // [Display(Name = "Ending date")]
+        [Required]
+        [DataType(DataType.DateTime)]
+        [Display(Name = "Ending date")]
         public DateTime EndingDate { get; set; }
 
         /// <summary>
@@ -73,7 +74,7 @@
         /// </summary>
         [Column(@"AddressID", Order = 8, TypeName = "int")]
         // [Index(@"IX_Activity_AddressID", 1, IsUnique = true, IsClustered = false)]
-        // [Display(Name = "Address ID")]
+        [Display(Name = "Address ID")]
         public int? AddressID { get; set; }
 
         /// <summary>
@@ -81,8 +82,8 @@
         /// </summary>
         [Column(@"CharityID", Order = 9, TypeName = "int")]
         // [Index(@"IX_Activity_CharityID", 1, IsUnique = false, IsClustered = false)]
-        // [Required]
-        // [Display(Name = "Charity ID")]
+        [Required]
+        [Display(Name = "Charity ID")]
         public int CharityID { get; set; }
 
         /// <summary>
@@ -90,14 +91,14 @@
         /// </summary>
         [Column(@"FieldID", Order = 10, TypeName = "int")]
         // [Index(@"IX_Activity_FieldID", 1, IsUnique = false, IsClustered = false)]
-        // [Display(Name = "Field ID")]
+        [Display(Name = "Field ID")]
         public int? FieldID { get; set; }
 
         /// <summary>
         /// Gets or sets the TypeID
         /// </summary>
         [Column(@"TypeID", Order = 11, TypeName = "int")]
-        // [Display(Name = "Type ID")]
+        [Display(Name = "Type ID")]
         public int? TypeID { get; set; }
 
         /// <summary>
@@ -105,7 +106,7 @@
         /// </summary>
         [Column(@"ActivityTypeID", Order = 12, TypeName = "int")]
         // [Index(@"IX_Activity_ActivityTypeID", 1, IsUnique = false, IsClustered = false)]
-        // [Display(Name = "Activity type ID")]
+        [Display(Name = "Activity type ID")]
         public int? ActivityTypeID { get; set; }
 
         // Foreign keys
