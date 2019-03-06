@@ -26,7 +26,7 @@
         /// Gets or sets the Label
         /// Label (length: 450)
         /// </summary>
-        [Column(@"Label", Order = 2, TypeName = "nvarchar")]
+        // [Column(@"Label", Order = 2, TypeName = "nvarchar")]
         // [Index(@"AK_Language_Label", 1, IsUnique = true, IsClustered = false)]
         [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]

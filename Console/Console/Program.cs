@@ -25,6 +25,11 @@
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
             foreach (Language language in crowdActDbContext.Languages)
                 Console.WriteLine(" - {0}", language.Label);
+
+            crowdActDbContext.AccountStatuses.AddRange(GetAccountStatuses());
+            Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
+            foreach (AccountStatus accountStatus in crowdActDbContext.AccountStatuses)
+                Console.WriteLine(" - {0}", accountStatus.Label);
         }
 
         #region aRegion
@@ -49,7 +54,6 @@
 
             return new Category[] { edu, emp, hel };
         }
-        #endregion
 
         static Language[] GetLanguages()
         {
@@ -60,6 +64,7 @@
 
             return new Language[] { c };
         }
+        #endregion
 
         static AccountStatus[] GetAccountStatuses()
         {
