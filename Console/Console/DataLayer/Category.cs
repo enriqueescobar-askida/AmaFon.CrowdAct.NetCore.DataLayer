@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer.Entities
+﻿namespace Console.DataLayer
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -7,6 +7,7 @@
     /// <summary>
     /// Defines the <see cref="Category" />
     /// </summary>
+    [Table("Category")]
     public partial class Category
     {
         /// <summary>
@@ -14,7 +15,7 @@
         /// ID (Primary key)
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(@"ID", Order = 1, TypeName = "int")]
+        [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
         // [Index(@"PK_Category", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
@@ -27,7 +28,7 @@
         /// </summary>
         [Column(@"Label", Order = 2, TypeName = "nvarchar")]
         // [Index(@"AK_Category_Label", 1, IsUnique = true, IsClustered = false)]
-        [Required(AllowEmptyStrings = true)]
+        [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
         [Display(Name = "Label")]
@@ -38,6 +39,7 @@
         /// <summary>
         /// Gets or sets the Activities
         /// Child Activities where [Activity].[FieldID] point to this entity (FK_Activity_Category_FieldID)
+        /// </summary>
         [InverseProperty("Field")]
         public virtual ICollection<Activity> Activities { get; set; }
 
@@ -49,7 +51,7 @@
         public virtual ICollection<Charity> Charities { get; set; }
 
         /// <summary>
-        /// Gets or sets the ParticipantCategory
+        /// Gets or sets the ParticipantCategories
         /// Child Users (Many-to-Many) mapped by table [ParticipantCategory]
         /// </summary>
         [InverseProperty("Category")]

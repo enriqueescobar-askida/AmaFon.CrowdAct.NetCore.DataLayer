@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer.Entities
+﻿namespace Console.DataLayer
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -7,6 +7,7 @@
     /// <summary>
     /// Defines the <see cref="Country" />
     /// </summary>
+    [Table("Country")]
     public partial class Country
     {
         /// <summary>
@@ -14,7 +15,7 @@
         /// ID (Primary key)
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(@"ID", Order = 1, TypeName = "int")]
+        [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
         // [Index(@"PK_Country", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
@@ -27,7 +28,7 @@
         /// </summary>
         [Column(@"Label", Order = 2, TypeName = "nvarchar")]
         // [Index(@"AK_Country_Label", 1, IsUnique = true, IsClustered = false)]
-        [Required(AllowEmptyStrings = true)]
+        [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
         [Display(Name = "Label")]
@@ -50,7 +51,7 @@
         public bool Disabled { get; set; }
 
         /// <summary>
-        /// Gets or sets the City
+        /// Gets or sets the Cities
         /// Child Cities where [City].[CountryID] point to this entity (FK_City_Country_CountryID)
         /// </summary>
         [InverseProperty("Country")]

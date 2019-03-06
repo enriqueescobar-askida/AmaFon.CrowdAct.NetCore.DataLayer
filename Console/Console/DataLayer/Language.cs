@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer.Entities
+﻿namespace Console.DataLayer
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
@@ -7,6 +7,7 @@
     /// <summary>
     /// Defines the <see cref="Language" />
     /// </summary>
+    [Table("Language")]
     public partial class Language
     {
         /// <summary>
@@ -14,7 +15,7 @@
         /// ID (Primary key)
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column(@"ID", Order = 1, TypeName = "int")]
+        [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
         // [Index(@"PK_Language", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
@@ -27,7 +28,7 @@
         /// </summary>
         [Column(@"Label", Order = 2, TypeName = "nvarchar")]
         // [Index(@"AK_Language_Label", 1, IsUnique = true, IsClustered = false)]
-        [Required(AllowEmptyStrings = true)]
+        [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
         [Display(Name = "Label")]

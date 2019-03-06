@@ -1,52 +1,143 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-
-namespace Console.DataLayer.Entities
+﻿namespace Console.DataLayer.Contexts
 {
+    using Microsoft.EntityFrameworkCore;
+
+    /// <summary>
+    /// Defines the <see cref="CrowdActDbContext" />
+    /// </summary>
     public partial class CrowdActDbContext : DbContext
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrowdActDbContext"/> class.
+        /// </summary>
         public CrowdActDbContext()
         {
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CrowdActDbContext"/> class.
+        /// </summary>
+        /// <param name="options">The options<see cref="DbContextOptions{CrowdActDbContext}"/></param>
         public CrowdActDbContext(DbContextOptions<CrowdActDbContext> options)
             : base(options)
         {
         }
 
-        public virtual DbSet<AccountStatus> AccountStatus { get; set; }
-        public virtual DbSet<Activity> Activity { get; set; }
-        public virtual DbSet<ActivityLanguage> ActivityLanguage { get; set; }
-        public virtual DbSet<ActivityParticipant> ActivityParticipant { get; set; }
-        public virtual DbSet<ActivitySkill> ActivitySkill { get; set; }
-        public virtual DbSet<ActivityType> ActivityType { get; set; }
-        public virtual DbSet<Address> Address { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
-        public virtual DbSet<Charity> Charity { get; set; }
-        public virtual DbSet<City> City { get; set; }
-        public virtual DbSet<Country> Country { get; set; }
-        public virtual DbSet<Language> Language { get; set; }
-        public virtual DbSet<ParticipantCategory> ParticipantCategory { get; set; }
-        public virtual DbSet<ParticipantStatus> ParticipantStatus { get; set; }
-        public virtual DbSet<Requirement> Requirement { get; set; }
-        public virtual DbSet<RequirementStatus> RequirementStatus { get; set; }
-        public virtual DbSet<ResourceType> ResourceType { get; set; }
-        public virtual DbSet<Skill> Skill { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        /// <summary>
+        /// Gets or sets the AccountStatuses
+        /// </summary>
+        public virtual DbSet<AccountStatus> AccountStatuses { get; set; }
 
+        /// <summary>
+        /// Gets or sets the Activities
+        /// </summary>
+        public virtual DbSet<Activity> Activities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ActivityLanguages
+        /// </summary>
+        public virtual DbSet<ActivityLanguage> ActivityLanguages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ActivityParticipants
+        /// </summary>
+        public virtual DbSet<ActivityParticipant> ActivityParticipants { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ActivitySkills
+        /// </summary>
+        public virtual DbSet<ActivitySkill> ActivitySkills { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ActivityTypes
+        /// </summary>
+        public virtual DbSet<ActivityType> ActivityTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Addresses
+        /// </summary>
+        public virtual DbSet<Address> Addresses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Categories
+        /// </summary>
+        public virtual DbSet<Category> Categories { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Charities
+        /// </summary>
+        public virtual DbSet<Charity> Charities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Cities
+        /// </summary>
+        public virtual DbSet<City> Cities { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Countries
+        /// </summary>
+        public virtual DbSet<Country> Countries { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Languages
+        /// </summary>
+        public virtual DbSet<Language> Languages { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParticipantCategories
+        /// </summary>
+        public virtual DbSet<ParticipantCategory> ParticipantCategories { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ParticipantStatuses
+        /// </summary>
+        public virtual DbSet<ParticipantStatus> ParticipantStatuses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Requirements
+        /// </summary>
+        public virtual DbSet<Requirement> Requirements { get; set; }
+
+        /// <summary>
+        /// Gets or sets the RequirementStatuses
+        /// </summary>
+        public virtual DbSet<RequirementStatus> RequirementStatuses { get; set; }
+
+        /// <summary>
+        /// Gets or sets the ResourceTypes
+        /// </summary>
+        public virtual DbSet<ResourceType> ResourceTypes { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Skills
+        /// </summary>
+        public virtual DbSet<Skill> Skills { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Users
+        /// </summary>
+        public virtual DbSet<User> Users { get; set; }
+
+        /// <summary>
+        /// The OnConfiguring
+        /// </summary>
+        /// <param name="optionsBuilder">The optionsBuilder<see cref="DbContextOptionsBuilder"/></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;database=CrowdActContext-4e575f9f-8ccb-4bc7-8da6-c6328166cc54;Trusted_Connection=True;MultipleActiveResultSets=true;Application Name=CrowdActApp");
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=CrowdActContext-4e575f9f-8ccb-4bc7-8da6-c6328166cc54;Integrated Security=True");
             }
         }
 
+        /// <summary>
+        /// The OnModelCreating
+        /// </summary>
+        /// <param name="modelBuilder">The modelBuilder<see cref="ModelBuilder"/></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.HasAnnotation("ProductVersion", "2.2.2-servicing-10034");
+            modelBuilder.HasAnnotation("ProductVersion", "2.2.0-rtm-35687");
 
             modelBuilder.Entity<AccountStatus>(entity =>
             {
@@ -189,7 +280,7 @@ namespace Console.DataLayer.Entities
                 entity.HasIndex(e => e.ResourceTypeID);
 
                 entity.HasOne(d => d.RequirementStatus)
-                    .WithMany(p => p.Requirement)
+                    .WithMany(p => p.Requirements)
                     .HasForeignKey(d => d.RequirementStatusID)
                     .OnDelete(DeleteBehavior.SetNull);
 
@@ -237,6 +328,14 @@ namespace Console.DataLayer.Entities
                     .HasForeignKey(d => d.AccountStatusID)
                     .OnDelete(DeleteBehavior.SetNull);
             });
+
+            OnModelCreatingPartial(modelBuilder);
         }
+
+        /// <summary>
+        /// The OnModelCreatingPartial
+        /// </summary>
+        /// <param name="modelBuilder">The modelBuilder<see cref="ModelBuilder"/></param>
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
