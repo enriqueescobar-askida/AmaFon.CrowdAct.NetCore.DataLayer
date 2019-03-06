@@ -13,23 +13,43 @@
 
             crowdActDbContext.Countries.AddRange(GetCountries());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
-            foreach (Country country in crowdActDbContext.Countries)
-                Console.WriteLine(" - {0}", country.Label);
+            foreach (Country x in crowdActDbContext.Countries)
+                Console.WriteLine(" - {0}", x.Label);
 
             crowdActDbContext.Categories.AddRange(GetCategories());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
-            foreach (Category category in crowdActDbContext.Categories)
-                Console.WriteLine(" - {0}", category.Label);
+            foreach (Category x in crowdActDbContext.Categories)
+                Console.WriteLine(" - {0}", x.Label);
 
             crowdActDbContext.Languages.AddRange(GetLanguages());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
-            foreach (Language language in crowdActDbContext.Languages)
-                Console.WriteLine(" - {0}", language.Label);
+            foreach (Language x in crowdActDbContext.Languages)
+                Console.WriteLine(" - {0}", x.Label);
 
             crowdActDbContext.AccountStatuses.AddRange(GetAccountStatuses());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
-            foreach (AccountStatus accountStatus in crowdActDbContext.AccountStatuses)
-                Console.WriteLine(" - {0}", accountStatus.Label);
+            foreach (AccountStatus x in crowdActDbContext.AccountStatuses)
+                Console.WriteLine(" - {0}", x.Label);
+
+            crowdActDbContext.ResourceTypes.AddRange(GetResourceTypes());
+            Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
+            foreach (ResourceType x in crowdActDbContext.ResourceTypes)
+                Console.WriteLine(" - {0}", x.Label);
+
+            crowdActDbContext.ParticipantStatuses.AddRange(GetParticipantStatuses());
+            Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
+            foreach (ParticipantStatus x in crowdActDbContext.ParticipantStatuses)
+                Console.WriteLine(" - {0}", x.Label);
+
+            crowdActDbContext.ActivityTypes.AddRange(GetActivityTypes());
+            Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
+            foreach (ActivityType x in crowdActDbContext.ActivityTypes)
+                Console.WriteLine(" - {0}", x.Label);
+
+            crowdActDbContext.Skills.AddRange(GetSkills());
+            Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
+            foreach (Skill x in crowdActDbContext.Skills)
+                Console.WriteLine(" - {0}", x.Label);
         }
 
         #region aRegion
@@ -64,7 +84,6 @@
 
             return new Language[] { c };
         }
-        #endregion
 
         static AccountStatus[] GetAccountStatuses()
         {
@@ -110,5 +129,6 @@
 
             return new Skill[] { g, p, m };
         }
+        #endregion
     }
 }

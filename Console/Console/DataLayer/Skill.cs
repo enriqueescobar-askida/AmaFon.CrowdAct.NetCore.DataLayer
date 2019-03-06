@@ -11,29 +11,42 @@
     public partial class Skill
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Skill"/> class.
-        /// </summary>
-        public Skill()
-        {
-            ActivitySkills = new HashSet<ActivitySkill>();
-        }
-
-        /// <summary>
         /// Gets or sets the ID
+        /// ID (Primary key)
         /// </summary>
-        [Column("ID")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
+        // [Index(@"PK_Skill", 1, IsUnique = true, IsClustered = true)]
+        [Required]
+        [Key]
+        [Display(Name = "Id")]
         public int ID { get; set; }
 
         /// <summary>
         /// Gets or sets the Label
+        /// Label (length: 450)
         /// </summary>
-        [Required]
+        // [Column(@"Label", Order = 2, TypeName = "nvarchar")]
+        // [Index(@"AK_Skill_Label", 1, IsUnique = true, IsClustered = false)]
+        [Required(AllowEmptyStrings = true)] // [Required]
+        [MaxLength(450)]
+        [StringLength(450)]
+        [Display(Name = "Label")]
         public string Label { get; set; }
 
         /// <summary>
         /// Gets or sets the ActivitySkills
+        /// Child Activities (Many-to-Many) mapped by table [ActivitySkill]
         /// </summary>
         [InverseProperty("Skill")]
         public virtual ICollection<ActivitySkill> ActivitySkills { get; set; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Skill"/> class.
+        /// </summary>
+        public Skill()
+        {
+            this.ActivitySkills = new HashSet<ActivitySkill>();
+        }
     }
 }
