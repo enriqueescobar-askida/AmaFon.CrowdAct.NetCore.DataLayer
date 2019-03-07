@@ -20,6 +20,8 @@
         [Column("CategoryID")]
         public int CategoryID { get; set; }
 
+        // Foreign keys
+
         /// <summary>
         /// Gets or sets the Category
         /// </summary>
