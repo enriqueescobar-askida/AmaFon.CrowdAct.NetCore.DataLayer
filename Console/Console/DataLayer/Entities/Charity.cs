@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System;
     using System.Collections.Generic;

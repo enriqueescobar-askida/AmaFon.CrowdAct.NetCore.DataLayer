@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
@@ -47,9 +47,9 @@
         /// <summary>
         /// Gets or sets the CityID
         /// </summary>
-        [Column(@"CityID", Order = 5, TypeName = "int")]
+        [Column(@"CityID", Order = 5, TypeName = "int")] // [Column("CityID")]
         // [Index(@"IX_Address_CityID", 1, IsUnique = false, IsClustered = false)]
-        [Column("CityID")] // [Display(Name = "City ID")]
+        [Display(Name = "City ID")]
         public int? CityID { get; set; }
 
         /// <summary>

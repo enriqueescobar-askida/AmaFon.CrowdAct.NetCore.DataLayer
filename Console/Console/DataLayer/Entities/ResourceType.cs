@@ -1,14 +1,14 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
-    /// Defines the <see cref="AccountStatus" />
+    /// Defines the <see cref="ResourceType" />
     /// </summary>
-    [Table("AccountStatus")]
-    public partial class AccountStatus
+    [Table("ResourceType")]
+    public partial class ResourceType
     {
         /// <summary>
         /// Gets or sets the ID
@@ -16,7 +16,7 @@
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
-        // [Index(@"PK_AccountStatus", 1, IsUnique = true, IsClustered = true)]
+        // [Index(@"PK_ResourceType", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
         [Display(Name = "Id")]
@@ -27,7 +27,7 @@
         /// Label (length: 450)
         /// </summary>
         // [Column(@"Label", Order = 2, TypeName = "nvarchar")]
-        // [Index(@"AK_AccountStatus_Label", 1, IsUnique = true, IsClustered = false)]
+        // [Index(@"AK_ResourceType_Label", 1, IsUnique = true, IsClustered = false)]
         [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
@@ -37,17 +37,18 @@
         // Reverse navigation
 
         /// <summary>
-        /// Gets or sets the Users
+        /// Gets or sets the Requirements
+        /// Child Requirements where [Requirement].[ResourceTypeID] point to this entity (FK_Requirement_ResourceType_ResourceTypeID)
         /// </summary>
-        [InverseProperty("AccountStatus")]
-        public virtual ICollection<User> Users { get; set; }
+        [InverseProperty("ResourceType")]
+        public virtual ICollection<Requirement> Requirements { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AccountStatus"/> class.
+        /// Initializes a new instance of the <see cref="ResourceType"/> class.
         /// </summary>
-        public AccountStatus()
+        public ResourceType()
         {
-            this.Users = new HashSet<User>();
+            this.Requirements = new HashSet<Requirement>();
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     using System;
     using DataLayer.Contexts;
+    using DataLayer.Entities;
     using DataLayer;
 
     public class Program

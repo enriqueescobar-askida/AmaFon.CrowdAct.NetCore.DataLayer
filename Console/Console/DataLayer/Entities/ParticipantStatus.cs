@@ -1,14 +1,14 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
-    /// Defines the <see cref="ResourceType" />
+    /// Defines the <see cref="ParticipantStatus" />
     /// </summary>
-    [Table("ResourceType")]
-    public partial class ResourceType
+    [Table("ParticipantStatus")]
+    public partial class ParticipantStatus
     {
         /// <summary>
         /// Gets or sets the ID
@@ -16,7 +16,7 @@
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
-        // [Index(@"PK_ResourceType", 1, IsUnique = true, IsClustered = true)]
+        // [Index(@"PK_ParticipantStatus", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
         [Display(Name = "Id")]
@@ -24,10 +24,10 @@
 
         /// <summary>
         /// Gets or sets the Label
-        /// Label (length: 450)
+        /// .Label (length: 450)
         /// </summary>
         // [Column(@"Label", Order = 2, TypeName = "nvarchar")]
-        // [Index(@"AK_ResourceType_Label", 1, IsUnique = true, IsClustered = false)]
+        // [Index(@"AK_ParticipantStatus_Label", 1, IsUnique = true, IsClustered = false)]
         [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
@@ -37,18 +37,18 @@
         // Reverse navigation
 
         /// <summary>
-        /// Gets or sets the Requirements
-        /// Child Requirements where [Requirement].[ResourceTypeID] point to this entity (FK_Requirement_ResourceType_ResourceTypeID)
+        /// Gets or sets the ActivityParticipants
+        /// Child ActivityParticipants where [ActivityParticipant].[ParticipantStatusID] point to this entity (FK_ActivityParticipant_ParticipantStatus_ParticipantStatusID)
         /// </summary>
-        [InverseProperty("ResourceType")]
-        public virtual ICollection<Requirement> Requirements { get; set; }
+        [InverseProperty("ParticipantStatus")]
+        public virtual ICollection<ActivityParticipant> ActivityParticipants { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResourceType"/> class.
+        /// Initializes a new instance of the <see cref="ParticipantStatus"/> class.
         /// </summary>
-        public ResourceType()
+        public ParticipantStatus()
         {
-            this.Requirements = new HashSet<Requirement>();
+            this.ActivityParticipants = new HashSet<ActivityParticipant>();
         }
     }
 }

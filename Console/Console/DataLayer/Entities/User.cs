@@ -1,4 +1,4 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System;
     using System.Collections.Generic;
@@ -91,9 +91,9 @@
         /// <summary>
         /// Gets or sets the AccountStatusID
         /// </summary>
-        [Column(@"AccountStatusID", Order = 10, TypeName = "int")]
+        [Column(@"AccountStatusID", Order = 10, TypeName = "int")] // [Column("AccountStatusID")]
         // [Index(@"IX_User_AccountStatusID", 1, IsUnique = false, IsClustered = false)]
-        [Column("AccountStatusID")] // [Display(Name = "Account status ID")]
+        [Display(Name = "Account status ID")]
         public int? AccountStatusID { get; set; }
 
         // Reverse navigation

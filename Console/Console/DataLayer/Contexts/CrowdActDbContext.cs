@@ -1,6 +1,7 @@
 ﻿namespace Console.DataLayer.Contexts
 {
     using Microsoft.EntityFrameworkCore;
+    using Entities;
 
     /// <summary>
     /// Defines the <see cref="CrowdActDbContext" />

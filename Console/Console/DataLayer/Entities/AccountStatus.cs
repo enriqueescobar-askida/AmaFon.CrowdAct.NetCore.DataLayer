@@ -1,14 +1,14 @@
-﻿namespace Console.DataLayer
+﻿namespace Console.DataLayer.Entities
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     /// <summary>
-    /// Defines the <see cref="ParticipantStatus" />
+    /// Defines the <see cref="AccountStatus" />
     /// </summary>
-    [Table("ParticipantStatus")]
-    public partial class ParticipantStatus
+    [Table("AccountStatus")]
+    public partial class AccountStatus
     {
         /// <summary>
         /// Gets or sets the ID
@@ -16,7 +16,7 @@
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Column(@"ID", Order = 1, TypeName = "int")] // [Column("ID")]
-        // [Index(@"PK_ParticipantStatus", 1, IsUnique = true, IsClustered = true)]
+        // [Index(@"PK_AccountStatus", 1, IsUnique = true, IsClustered = true)]
         [Required]
         [Key]
         [Display(Name = "Id")]
@@ -24,10 +24,10 @@
 
         /// <summary>
         /// Gets or sets the Label
-        /// .Label (length: 450)
+        /// Label (length: 450)
         /// </summary>
         // [Column(@"Label", Order = 2, TypeName = "nvarchar")]
-        // [Index(@"AK_ParticipantStatus_Label", 1, IsUnique = true, IsClustered = false)]
+        // [Index(@"AK_AccountStatus_Label", 1, IsUnique = true, IsClustered = false)]
         [Required(AllowEmptyStrings = true)] // [Required]
         [MaxLength(450)]
         [StringLength(450)]
@@ -37,18 +37,17 @@
         // Reverse navigation
 
         /// <summary>
-        /// Gets or sets the ActivityParticipants
-        /// Child ActivityParticipants where [ActivityParticipant].[ParticipantStatusID] point to this entity (FK_ActivityParticipant_ParticipantStatus_ParticipantStatusID)
+        /// Gets or sets the Users
         /// </summary>
-        [InverseProperty("ParticipantStatus")]
-        public virtual ICollection<ActivityParticipant> ActivityParticipants { get; set; }
+        [InverseProperty("AccountStatus")]
+        public virtual ICollection<User> Users { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ParticipantStatus"/> class.
+        /// Initializes a new instance of the <see cref="AccountStatus"/> class.
         /// </summary>
-        public ParticipantStatus()
+        public AccountStatus()
         {
-            this.ActivityParticipants = new HashSet<ActivityParticipant>();
+            this.Users = new HashSet<User>();
         }
     }
 }
