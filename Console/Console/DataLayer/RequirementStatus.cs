@@ -15,7 +15,7 @@
         /// </summary>
         public RequirementStatus()
         {
-            Requirements = new HashSet<Requirement>();
+            this.Requirements = new HashSet<Requirement>();
         }
 
         /// <summary>
