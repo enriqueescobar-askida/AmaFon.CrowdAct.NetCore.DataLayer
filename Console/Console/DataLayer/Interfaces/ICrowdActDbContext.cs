@@ -8,7 +8,7 @@
 
     public interface ICrowdActDbContext : System.IDisposable
     {
-        DbSet<AccountStatus> AccountStatus { get; set; } // AccountStatus
+        DbSet<AccountStatus> AccountStatuses { get; set; } // AccountStatus
         DbSet<Activity> Activities { get; set; } // Activity
         DbSet<ActivityLanguage> ActivityLanguages { get; set; } // ActivityLanguage
         DbSet<ActivityParticipant> ActivityParticipants { get; set; } // ActivityParticipant
@@ -21,9 +21,9 @@
         DbSet<Country> Countries { get; set; } // Country
         DbSet<Language> Languages { get; set; } // Language
         DbSet<ParticipantCategory> ParticipantCategories { get; set; } // ParticipantCategory
-        DbSet<ParticipantStatus> ParticipantStatus { get; set; } // ParticipantStatus
+        DbSet<ParticipantStatus> ParticipantStatuses { get; set; } // ParticipantStatus
         DbSet<Requirement> Requirements { get; set; } // Requirement
-        DbSet<RequirementStatus> RequirementStatus { get; set; } // RequirementStatus
+        DbSet<RequirementStatus> RequirementStatuses { get; set; } // RequirementStatus
         DbSet<ResourceType> ResourceTypes { get; set; } // ResourceType
         DbSet<Skill> Skills { get; set; } // Skill
         DbSet<User> Users { get; set; } // User

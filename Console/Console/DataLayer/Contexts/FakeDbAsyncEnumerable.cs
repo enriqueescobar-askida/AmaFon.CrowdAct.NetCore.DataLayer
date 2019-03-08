@@ -4,7 +4,7 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    public class FakeDbAsyncEnumerable<T> : EnumerableQuery<T>, System.Data.Entity.Infrastructure.IDbAsyncEnumerable<T>, IQueryable<T>
+    public class FakeDbAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeDbAsyncEnumerable{T}"/> class.
@@ -24,6 +24,17 @@
         {
         }
 
+        IAsyncEnumerator<T> IAsyncEnumerable<T>.GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IAsyncEnumerator<T> GetEnumerator()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /*
         /// <summary>
         /// The GetAsyncEnumerator
         /// </summary>
@@ -37,10 +48,10 @@
         /// The GetAsyncEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.IDbAsyncEnumerator"/></returns>
-        IDbAsyncEnumerator System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator()
+        System.Data.Entity.Infrastructure.IDbAsyncEnumerator System.Data.Entity.Infrastructure.IDbAsyncEnumerable.GetAsyncEnumerator()
         {
             return GetAsyncEnumerator();
-        }
+        }*/
 
         /// <summary>
         /// Gets the Provider
