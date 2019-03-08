@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class FakeDbAsyncQueryProvider<TEntity> : IAsyncQueryProvider
+    public class FakeAsyncQueryProvider<TEntity> : IAsyncQueryProvider
     {
         /// <summary>
         /// Defines the _inner
@@ -16,10 +16,10 @@
         private readonly IQueryProvider _inner;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeDbAsyncQueryProvider{TEntity}"/> class.
+        /// Initializes a new instance of the <see cref="FakeAsyncQueryProvider{TEntity}"/> class.
         /// </summary>
         /// <param name="inner">The inner<see cref="IQueryProvider"/></param>
-        public FakeDbAsyncQueryProvider(IQueryProvider inner)
+        public FakeAsyncQueryProvider(IQueryProvider inner)
         {
             _inner = inner;
         }

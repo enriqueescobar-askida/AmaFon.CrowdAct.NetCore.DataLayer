@@ -56,6 +56,6 @@
         /// <summary>
         /// Gets the Provider
         /// </summary>
-        IQueryProvider IQueryable.Provider => new FakeDbAsyncQueryProvider<T>(this);
+        IQueryProvider IQueryable.Provider => new FakeAsyncQueryProvider<T>(this);
     }
 }
