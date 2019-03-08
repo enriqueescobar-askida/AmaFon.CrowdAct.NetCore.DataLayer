@@ -15,7 +15,7 @@
     /// Defines the <see cref="FakeDbSet{T}" />
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class FakeDbSet<TEntity> : DbSet<TEntity>, IQueryable, IEnumerable<TEntity>, System.Data.Entity.Infrastructure.IDbAsyncEnumerable<TEntity> where TEntity : class
+    public class FakeDbSet<TEntity> : DbSet<TEntity>, IQueryable, IEnumerable<TEntity>, IAsyncEnumerable<TEntity> where TEntity : class
     {
         /// <summary>
         /// Defines the _primaryKeys
@@ -211,6 +211,16 @@
         /// The GetAsyncEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.IDbAsyncEnumerator{TEntity}"/></returns>
-        System.Data.Entity.Infrastructure.IDbAsyncEnumerator<TEntity> System.Data.Entity.Infrastructure.IDbAsyncEnumerable<TEntity>.GetAsyncEnumerator() => new FakeAsyncEnumerator<TEntity>(_data.GetEnumerator());
+        IAsyncEnumerator<TEntity> IAsyncEnumerator<TEntity>.GetAsyncEnumerator() => new FakeAsyncEnumerator<TEntity>(_data.GetEnumerator());
+
+        public IAsyncEnumerator<TEntity> GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
+
+        IAsyncEnumerator<TEntity> IAsyncEnumerable<TEntity>.GetEnumerator()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Console.DataLayer.Contexts
 {
+    using System;
     using System.Collections.Generic;
     using System.Threading;
     using System.Threading.Tasks;
@@ -18,17 +19,18 @@
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeAsyncEnumerator{T}"/> class.
         /// </summary>
-        /// <param name="inner">The inner<see cref="System.Collections.Generic.IEnumerator{T}"/></param>
-        public FakeAsyncEnumerator(IEnumerator<T> inner)
+        public FakeAsyncEnumerator()
         {
-            _inner = inner;
+            _inner = null;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeAsyncEnumerator{T}"/> class.
         /// </summary>
-        public FakeAsyncEnumerator()
+        /// <param name="inner">The inner<see cref="System.Collections.Generic.IEnumerator{T}"/></param>
+        public FakeAsyncEnumerator(IEnumerator<T> inner)
         {
+            _inner = inner ?? throw new ArgumentNullException(nameof(inner));
         }
 
         /// <summary>
