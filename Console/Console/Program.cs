@@ -3,7 +3,6 @@
     using System;
     using DataLayer.Contexts;
     using DataLayer.Entities;
-    using DataLayer;
 
     public class Program
     {
@@ -11,7 +10,7 @@
         {
             Console.WriteLine("Hello CrowdAct!");
             CrowdActDbContext crowdActDbContext = new CrowdActDbContext();
-
+            //Microsoft.EntityFrameworkCore.IEntityTypeConfiguration
             crowdActDbContext.Countries.AddRange(GetCountries());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
             foreach (Country x in crowdActDbContext.Countries)
@@ -119,7 +118,7 @@
             ActivityType c = new ActivityType { Label = "Collection" };
             ActivityType e = new ActivityType { Label = "Event" };
 
-            return new ActivityType[]{ };
+            return new ActivityType[]{ c, e };
         }
 
         static Skill[] GetSkills()

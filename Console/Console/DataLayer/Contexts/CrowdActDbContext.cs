@@ -330,7 +330,7 @@
                     .OnDelete(DeleteBehavior.SetNull);
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            this.OnModelCreatingPartial(modelBuilder);
         }
 
         /// <summary>
