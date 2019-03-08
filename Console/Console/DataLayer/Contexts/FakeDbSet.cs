@@ -193,7 +193,7 @@
         /// <summary>
         /// Gets the Provider
         /// </summary>
-        IQueryProvider IQueryable.Provider => new FakeAsyncQueryProvider<TEntity>(_query.Provider);
+        IQueryProvider IQueryable.Provider => new FakeDbQueryProvider<TEntity>(_query.Provider);
 
         /// <summary>
         /// The GetEnumerator
@@ -211,7 +211,7 @@
         /// The GetAsyncEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.IDbAsyncEnumerator{TEntity}"/></returns>
-        IAsyncEnumerator<TEntity> IAsyncEnumerator<TEntity>.GetAsyncEnumerator() => new FakeAsyncEnumerator<TEntity>(_data.GetEnumerator());
+        IAsyncEnumerator<TEntity> IAsyncEnumerator<TEntity>.GetAsyncEnumerator() => new FakeDbEnumerator<TEntity>(_data.GetEnumerator());
 
         public IAsyncEnumerator<TEntity> GetEnumerator()
         {

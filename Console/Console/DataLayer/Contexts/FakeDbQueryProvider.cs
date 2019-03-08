@@ -8,7 +8,7 @@
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class FakeAsyncQueryProvider<TEntity> : IAsyncQueryProvider
+    public class FakeDbQueryProvider<TEntity> : IAsyncQueryProvider
     {
         /// <summary>
         /// Defines the _inner
@@ -16,10 +16,10 @@
         private readonly IQueryProvider _inner;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeAsyncQueryProvider{TEntity}"/> class.
+        /// Initializes a new instance of the <see cref="FakeDbQueryProvider{TEntity}"/> class.
         /// </summary>
         /// <param name="inner">The inner<see cref="IQueryProvider"/></param>
-        public FakeAsyncQueryProvider(IQueryProvider inner)
+        public FakeDbQueryProvider(IQueryProvider inner)
         {
             _inner = inner;
         }
@@ -37,12 +37,12 @@
             {
                 Type resultType = m.Method.ReturnType; // it shoud be IQueryable<T>
                 Type tElement = resultType.GetGenericArguments()[0];
-                Type queryType = typeof(FakeAsyncEnumerable<>).MakeGenericType(tElement);
+                Type queryType = typeof(FakeDbEnumerable<>).MakeGenericType(tElement);
 
                 return (IQueryable)Activator.CreateInstance(queryType, expression);
             }
 
-            return new FakeAsyncEnumerable<TEntity>(expression);
+            return new FakeDbEnumerable<TEntity>(expression);
         }
 
         /// <summary>
@@ -53,7 +53,7 @@
         /// <returns>The <see cref="IQueryable{TElement}"/></returns>
         public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
         {
-            Type queryType = typeof(FakeAsyncEnumerable<>).MakeGenericType(typeof(TElement));
+            Type queryType = typeof(FakeDbEnumerable<>).MakeGenericType(typeof(TElement));
 
             return (IQueryable<TElement>)Activator.CreateInstance(queryType, expression);
         }

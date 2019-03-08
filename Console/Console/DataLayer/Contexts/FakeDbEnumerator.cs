@@ -6,10 +6,10 @@
     using System.Threading.Tasks;
 
     /// <summary>
-    /// Defines the <see cref="FakeAsyncEnumerator{T}" />
+    /// Defines the <see cref="FakeDbEnumerator{T}" />
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class FakeAsyncEnumerator<T> : IAsyncEnumerator<T>
+    public class FakeDbEnumerator<T> : IAsyncEnumerator<T>
     {
         /// <summary>
         /// Defines the _inner
@@ -17,18 +17,18 @@
         private readonly IEnumerator<T> _inner;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeAsyncEnumerator{T}"/> class.
+        /// Initializes a new instance of the <see cref="FakeDbEnumerator{T}"/> class.
         /// </summary>
-        public FakeAsyncEnumerator()
+        public FakeDbEnumerator()
         {
             _inner = null;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeAsyncEnumerator{T}"/> class.
+        /// Initializes a new instance of the <see cref="FakeDbEnumerator{T}"/> class.
         /// </summary>
         /// <param name="inner">The inner<see cref="System.Collections.Generic.IEnumerator{T}"/></param>
-        public FakeAsyncEnumerator(IEnumerator<T> inner)
+        public FakeDbEnumerator(IEnumerator<T> inner)
         {
             _inner = inner ?? throw new ArgumentNullException(nameof(inner));
         }
