@@ -4,22 +4,22 @@
     using System.Linq;
     using System.Linq.Expressions;
 
-    public class FakeDbAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
+    public class FakeAsyncEnumerable<T> : EnumerableQuery<T>, IAsyncEnumerable<T>, IQueryable<T>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeDbAsyncEnumerable{T}"/> class.
+        /// Initializes a new instance of the <see cref="FakeAsyncEnumerable{T}"/> class.
         /// </summary>
         /// <param name="enumerable">The enumerable<see cref="System.Collections.Generic.IEnumerable{T}"/></param>
-        public FakeDbAsyncEnumerable(IEnumerable<T> enumerable)
+        public FakeAsyncEnumerable(IEnumerable<T> enumerable)
             : base(enumerable)
         {
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeDbAsyncEnumerable{T}"/> class.
+        /// Initializes a new instance of the <see cref="FakeAsyncEnumerable{T}"/> class.
         /// </summary>
         /// <param name="expression">The expression<see cref="System.Linq.Expressions.Expression"/></param>
-        public FakeDbAsyncEnumerable(Expression expression)
+        public FakeAsyncEnumerable(Expression expression)
             : base(expression)
         {
         }

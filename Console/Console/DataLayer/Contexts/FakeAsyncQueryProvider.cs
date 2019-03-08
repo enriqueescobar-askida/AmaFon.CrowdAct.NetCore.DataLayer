@@ -37,11 +37,12 @@
             {
                 Type resultType = m.Method.ReturnType; // it shoud be IQueryable<T>
                 Type tElement = resultType.GetGenericArguments()[0];
-                Type queryType = typeof(FakeDbAsyncEnumerable<>).MakeGenericType(tElement);
+                Type queryType = typeof(FakeAsyncEnumerable<>).MakeGenericType(tElement);
 
                 return (IQueryable)Activator.CreateInstance(queryType, expression);
             }
-            return new FakeDbAsyncEnumerable<TEntity>(expression);
+
+            return new FakeAsyncEnumerable<TEntity>(expression);
         }
 
         /// <summary>
@@ -52,7 +53,7 @@
         /// <returns>The <see cref="IQueryable{TElement}"/></returns>
         public IQueryable<TElement> CreateQuery<TElement>(Expression expression)
         {
-            Type queryType = typeof(FakeDbAsyncEnumerable<>).MakeGenericType(typeof(TElement));
+            Type queryType = typeof(FakeAsyncEnumerable<>).MakeGenericType(typeof(TElement));
 
             return (IQueryable<TElement>)Activator.CreateInstance(queryType, expression);
         }
