@@ -2,9 +2,10 @@
 {
     using Entities;
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System;
-    /*using System.CodeDom.Compiler;
-    using System.Collections.Generic;*/
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using System.Threading;
     using System.Threading.Tasks;
 
@@ -127,14 +128,43 @@
         /// <returns>The <see cref="Task{int}"/></returns>
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
-        /*System.Data.Entity.Infrastructure.DbChangeTracker ChangeTracker { get; }
+        /// <summary>
+        /// Gets the ChangeTracker
+        /// </summary>
+        ChangeTracker ChangeTracker { get; }
+
+        /// <summary>
+        /// The Entry
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <param name="entity">The entity<see cref="TEntity"/></param>
+        /// <returns>The <see cref="EntityEntry{TEntity}"/></returns>
+        EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
+
+        /// <summary>
+        /// The Entry
+        /// </summary>
+        /// <param name="entity">The entity<see cref="object"/></param>
+        /// <returns>The <see cref="EntityEntry"/></returns>
+        EntityEntry Entry(object entity);
+
+        /*
         System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
         System.Data.Entity.Database Database { get; }
-        System.Data.Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
-        System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity);
-        IEnumerable<System.Data.Entity.Validation.DbEntityValidationResult> GetValidationErrors();
-        System.Data.Entity.DbSet Set(System.Type entityType);
-        System.Data.Entity.DbSet<TEntity> Set<TEntity>() where TEntity : class;*/
+        System.Data.Entity.DbSet Set(System.Type entityType);*/
+
+        /// <summary>
+        /// The GetValidationErrors
+        /// </summary>
+        /// <returns>The <see cref="IEnumerable{ValidationException}"/></returns>
+        IEnumerable<ValidationException> GetValidationErrors();
+
+        /// <summary>
+        /// The Set
+        /// </summary>
+        /// <typeparam name="TEntity"></typeparam>
+        /// <returns>The <see cref="DbSet{TEntity}"/></returns>
+        DbSet<TEntity> Set<TEntity>() where TEntity : class;
 
         /// <summary>
         /// The ToString

@@ -1,6 +1,7 @@
 ﻿namespace Console.DataLayer.Contexts
 {
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
     using System;
     using System.Collections;
     using System.Collections.Generic;
@@ -46,7 +47,7 @@
         {
             this._primaryKeys = typeof(TEntity).GetProperties().Where(x => primaryKeys.Contains(x.Name)).ToArray();
             this._data = new ObservableCollection<TEntity>();
-            this._query = _data.AsQueryable();
+            this._query = this._data.AsQueryable();
         }
 
         /// <summary>
@@ -56,9 +57,9 @@
         /// <returns>The <see cref="TEntity"/></returns>
         public override TEntity Find(params object[] keyValues)
         {
-            if (_primaryKeys == null)
+            if (this._primaryKeys == null)
                 throw new ArgumentException("No primary keys defined");
-            if (keyValues.Length != _primaryKeys.Length)
+            if (keyValues.Length != this._primaryKeys.Length)
                 throw new ArgumentException("Incorrect number of keys passed to Find method");
 
             IQueryable<TEntity> keyQuery = this.AsQueryable();
@@ -66,7 +67,7 @@
                 .Select((t, i) => i)
                 .Aggregate(keyQuery,
                     (current, x) =>
-                        current.Where(entity => _primaryKeys[x].GetValue(entity, null).Equals(keyValues[x])));
+                        current.Where(entity => this._primaryKeys[x].GetValue(entity, null).Equals(keyValues[x])));
 
             return keyQuery.SingleOrDefault();
         }
@@ -105,21 +106,21 @@
 
             return items;
         }
-        */ /*
+        *//*
         /// <summary>
         /// The Add
         /// </summary>
         /// <param name="item">The item<see cref="TEntity"/></param>
         /// <returns>The <see cref="TEntity"/></returns>
-        public override TEntity Add(TEntity item)
+        public override TEntity Add(TEntity entity)
         {
-            if (item == null) throw new ArgumentNullException("item");
+            if (entity == null) throw new ArgumentNullException("entity");
 
-            this._data.Add(item);
+            this._data.Add(entity);
 
-            return item;
-        }
-        */ /*
+            return entity;
+        }*/
+         /*
         /// <summary>
         /// The RemoveRange
         /// </summary>
@@ -186,29 +187,29 @@
         /// <summary>
         /// Gets the ElementType
         /// </summary>
-        Type IQueryable.ElementType => _query.ElementType;
+        Type IQueryable.ElementType => this._query.ElementType;
 
         /// <summary>
         /// Gets the Expression
         /// </summary>
-        Expression IQueryable.Expression => _query.Expression;
+        Expression IQueryable.Expression => this._query.Expression;
 
         /// <summary>
         /// Gets the Provider
         /// </summary>
-        IQueryProvider IQueryable.Provider => new FakeDbQueryProvider<TEntity>(_query.Provider);
+        IQueryProvider IQueryable.Provider => new FakeDbQueryProvider<TEntity>(this._query.Provider);
 
         /// <summary>
         /// The GetEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Collections.IEnumerator"/></returns>
-        IEnumerator IEnumerable.GetEnumerator() => _data.GetEnumerator();
+        IEnumerator IEnumerable.GetEnumerator() => this._data.GetEnumerator();
 
         /// <summary>
         /// The GetEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Collections.Generic.IEnumerator{TEntity}"/></returns>
-        IEnumerator<TEntity> IEnumerable<TEntity>.GetEnumerator() => _data.GetEnumerator();
+        IEnumerator<TEntity> IEnumerable<TEntity>.GetEnumerator() => this._data.GetEnumerator();
         /*
         /// <summary>
         /// The GetAsyncEnumerator
