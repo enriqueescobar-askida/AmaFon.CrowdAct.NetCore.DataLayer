@@ -66,6 +66,6 @@
         /// <summary>
         /// Gets the Current
         /// </summary>
-        T IAsyncEnumerator<T>.Current => Current;
+        T IAsyncEnumerator<T>.Current => this.Current;
     }
 }

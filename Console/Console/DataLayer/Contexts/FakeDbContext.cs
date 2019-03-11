@@ -281,6 +281,9 @@
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.DbEntityEntry{TEntity}"/></returns>
         public EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
+            /*FakeDbSet<TEntity> fakeDbSet = new FakeDbSet<TEntity>();
+
+            return (EntityEntry<TEntity>) (new FakeDbSet<TEntity>().FirstAsync<TEntity>());*/
             throw new NotImplementedException();
         }
 
