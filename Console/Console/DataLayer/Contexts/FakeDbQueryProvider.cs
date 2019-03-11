@@ -19,10 +19,7 @@
         /// Initializes a new instance of the <see cref="FakeDbQueryProvider{TEntity}"/> class.
         /// </summary>
         /// <param name="inner">The inner<see cref="IQueryProvider"/></param>
-        public FakeDbQueryProvider(IQueryProvider inner)
-        {
-            _inner = inner;
-        }
+        public FakeDbQueryProvider(IQueryProvider inner) => this._inner = inner;
 
         /// <summary>
         /// The CreateQuery
@@ -63,7 +60,7 @@
         /// </summary>
         /// <param name="expression">The expression<see cref="System.Linq.Expressions.Expression"/></param>
         /// <returns>The <see cref="object"/></returns>
-        public object Execute(Expression expression) => _inner.Execute(expression);
+        public object Execute(Expression expression) => this._inner.Execute(expression);
 
         /// <summary>
         /// The Execute
@@ -71,7 +68,7 @@
         /// <typeparam name="TResult"></typeparam>
         /// <param name="expression">The expression<see cref="System.Linq.Expressions.Expression"/></param>
         /// <returns>The <see cref="TResult"/></returns>
-        public TResult Execute<TResult>(Expression expression) => _inner.Execute<TResult>(expression);
+        public TResult Execute<TResult>(Expression expression) => this._inner.Execute<TResult>(expression);
 
         /// <summary>
         /// The ExecuteAsync

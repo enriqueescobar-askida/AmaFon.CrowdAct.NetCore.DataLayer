@@ -8,9 +8,9 @@
     using Interfaces;
 
     /// <summary>
-    /// Defines the <see cref="FakeCrowdActDbContext" />
+    /// Defines the <see cref="FakeDbContext" />
     /// </summary>
-    public class FakeCrowdActDbContext : ICrowdActDbContext
+    public class FakeDbContext : ICrowdActDbContext
     {
         /// <summary>
         /// Gets or sets the AccountStatuses
@@ -123,7 +123,7 @@
 
         private SqlServerDatabaseFacadeExtensions _database;
 
-        public FakeCrowdActDbContext()
+        public FakeDbContext()
         {
             this._changeTracker = null;
             this._database = null;
