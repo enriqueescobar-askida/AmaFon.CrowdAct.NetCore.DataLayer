@@ -1,11 +1,14 @@
 ﻿namespace Console.DataLayer.Contexts
 {
-    using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.ChangeTracking;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
     using Entities;
     using Interfaces;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.ChangeTracking;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Threading;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Defines the <see cref="FakeDbContext" />
@@ -107,53 +110,72 @@
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
 
+        /// <summary>
+        /// The Dispose
+        /// </summary>
         public void Dispose()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// The SaveChanges
+        /// </summary>
+        /// <returns>The <see cref="int"/></returns>
         public int SaveChanges()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Defines the _changeTracker
+        /// </summary>
         private ChangeTracker _changeTracker;
 
-        public ChangeTracker ChangeTracker => this.ChangeTracker;
-
+        /// <summary>
+        /// Gets the ChangeTracker
+        /// </summary>
+        public ChangeTracker ChangeTracker => ChangeTracker;
+        /*
+        /// <summary>
+        /// Defines the _database
+        /// </summary>
         private SqlServerDatabaseFacadeExtensions _database;
-
+        */
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeDbContext"/> class.
+        /// </summary>
         public FakeDbContext()
         {
-            this._changeTracker = null;
-            this._database = null;
+            _changeTracker = null;
+            //_database = null;
 
-            this.AccountStatuses = new FakeDbSet<AccountStatus>("Id");
-            this.Activities = new FakeDbSet<Activity>("Id");
-            this.ActivityLanguages = new FakeDbSet<ActivityLanguage>("ActivityId", "LanguageId");
-            this.ActivityParticipants = new FakeDbSet<ActivityParticipant>("ActivityId", "ParticipantId");
-            this.ActivitySkills = new FakeDbSet<ActivitySkill>("Id");
-            this.ActivityTypes = new FakeDbSet<ActivityType>("Id");
-            this.Addresses = new FakeDbSet<Address>("Id");
-            this.Categories = new FakeDbSet<Category>("Id");
-            this.Charities = new FakeDbSet<Charity>("Id");
-            this.Cities = new FakeDbSet<City>("Id");
-            this.Countries = new FakeDbSet<Country>("Id");
-            this.Languages = new FakeDbSet<Language>("Id");
-            this.ParticipantCategories = new FakeDbSet<ParticipantCategory>("Id");
-            this.ParticipantStatuses = new FakeDbSet<ParticipantStatus>("Id");
-            this.Requirements = new FakeDbSet<Requirement>("Id");
-            this.RequirementStatuses = new FakeDbSet<RequirementStatus>("Id");
-            this.ResourceTypes = new FakeDbSet<ResourceType>("Id");
-            this.Skills = new FakeDbSet<Skill>("Id");
-            this.Users = new FakeDbSet<User>("Id");
+            AccountStatuses = new FakeDbSet<AccountStatus>("Id");
+            Activities = new FakeDbSet<Activity>("Id");
+            ActivityLanguages = new FakeDbSet<ActivityLanguage>("ActivityId", "LanguageId");
+            ActivityParticipants = new FakeDbSet<ActivityParticipant>("ActivityId", "ParticipantId");
+            ActivitySkills = new FakeDbSet<ActivitySkill>("Id");
+            ActivityTypes = new FakeDbSet<ActivityType>("Id");
+            Addresses = new FakeDbSet<Address>("Id");
+            Categories = new FakeDbSet<Category>("Id");
+            Charities = new FakeDbSet<Charity>("Id");
+            Cities = new FakeDbSet<City>("Id");
+            Countries = new FakeDbSet<Country>("Id");
+            Languages = new FakeDbSet<Language>("Id");
+            ParticipantCategories = new FakeDbSet<ParticipantCategory>("Id");
+            ParticipantStatuses = new FakeDbSet<ParticipantStatus>("Id");
+            Requirements = new FakeDbSet<Requirement>("Id");
+            RequirementStatuses = new FakeDbSet<RequirementStatus>("Id");
+            ResourceTypes = new FakeDbSet<ResourceType>("Id");
+            Skills = new FakeDbSet<Skill>("Id");
+            Users = new FakeDbSet<User>("Id");
         }
 
         /// <summary>
         /// Gets the SaveChangesCount
         /// </summary>
         public int SaveChangesCount { get; private set; }
-
+        /*
         /// <summary>
         /// The SaveChanges
         /// </summary>
@@ -162,7 +184,7 @@
         {
             ++SaveChangesCount;
             return 1;
-        }
+        }*/
 
         /// <summary>
         /// The SaveChangesAsync
@@ -179,7 +201,7 @@
         /// </summary>
         /// <param name="cancellationToken">The cancellationToken<see cref="System.Threading.CancellationToken"/></param>
         /// <returns>The <see cref="System.Threading.Tasks.Task{int}"/></returns>
-        public Task<int> SaveChangesAsync(System.Threading.CancellationToken cancellationToken)
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
             ++SaveChangesCount;
             return Task<int>.Factory.StartNew(() => 1, cancellationToken);
@@ -192,26 +214,30 @@
         protected virtual void Dispose(bool disposing)
         {
         }
-
+        /*
         /// <summary>
         /// The Dispose
         /// </summary>
         public void Dispose()
         {
-            this.Dispose(true);
-        }
-
-        public SqlServerDatabaseFacadeExtensions Database => this._database;
-
+            Dispose(true);
+        }*/
+        /*
+        /// <summary>
+        /// Gets the Database
+        /// </summary>
+        public SqlServerDatabaseFacadeExtensions Database => _database;
+        */
         /// <summary>
         /// The Entry
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <param name="entity">The entity<see cref="TEntity"/></param>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.DbEntityEntry{TEntity}"/></returns>
-        public Entity.Infrastructure.DbEntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
+        public EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
-            throw new System.NotImplementedException();
+            // Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<TEntity> entityEntry<TEntity>
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -219,35 +245,38 @@
         /// </summary>
         /// <param name="entity">The entity<see cref="object"/></param>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.DbEntityEntry"/></returns>
-        public System.Data.Entity.Infrastructure.DbEntityEntry Entry(object entity)
+        public EntityEntry Entry(object entity)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
         /// The GetValidationErrors
         /// </summary>
         /// <returns>The <see cref="System.Collections.Generic.IEnumerable{System.Data.Entity.Validation.DbEntityValidationResult}"/></returns>
-        public IEnumerable<System.Data.Entity.Validation.DbEntityValidationResult> GetValidationErrors() => throw new System.NotImplementedException();
-
+        public IEnumerable<ValidationException> GetValidationErrors()
+        {
+            throw new NotImplementedException();
+        }
+        /*
         /// <summary>
         /// The Set
         /// </summary>
         /// <param name="entityType">The entityType<see cref="System.Type"/></param>
         /// <returns>The <see cref="System.Data.Entity.DbSet"/></returns>
-        public System.Data.Entity.DbSet Set(System.Type entityType)
+        public System.Data.Entity.DbSet Set(Type entityType)
         {
-            throw new System.NotImplementedException();
-        }
+            throw new NotImplementedException();
+        }*/
 
         /// <summary>
         /// The Set
         /// </summary>
         /// <typeparam name="TEntity"></typeparam>
         /// <returns>The <see cref="System.Data.Entity.DbSet{TEntity}"/></returns>
-        public System.Data.Entity.DbSet<TEntity> Set<TEntity>() where TEntity : class
+        public DbSet<TEntity> Set<TEntity>() where TEntity : class
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         /// <summary>
@@ -256,7 +285,7 @@
         /// <returns>The <see cref="string"/></returns>
         public override string ToString()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

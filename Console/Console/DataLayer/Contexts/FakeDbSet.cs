@@ -70,22 +70,25 @@
 
             return keyQuery.SingleOrDefault();
         }
-
+        /*
         /// <summary>
         /// The FindAsync
         /// </summary>
         /// <param name="cancellationToken">The cancellationToken<see cref="System.Threading.CancellationToken"/></param>
         /// <param name="keyValues">The keyValues<see cref="object[]"/></param>
         /// <returns>The <see cref="System.Threading.Tasks.Task{TEntity}"/></returns>
-        public override Task<TEntity> FindAsync(CancellationToken cancellationToken, params object[] keyValues) => Task<TEntity>.Factory.StartNew(() => Find(keyValues), cancellationToken);
-
+        public override Task<TEntity> FindAsync(CancellationToken cancellationToken, params object[] keyValues)
+        {
+            return Task<TEntity>.Factory.StartNew(() => Find(keyValues), cancellationToken);
+        }
+        */
         /// <summary>
         /// The FindAsync
         /// </summary>
         /// <param name="keyValues">The keyValues<see cref="object[]"/></param>
         /// <returns>The <see cref="System.Threading.Tasks.Task{TEntity}"/></returns>
         public override Task<TEntity> FindAsync(params object[] keyValues) => Task<TEntity>.Factory.StartNew(() => Find(keyValues));
-
+        /*
         /// <summary>
         /// The AddRange
         /// </summary>
@@ -102,7 +105,7 @@
 
             return items;
         }
-
+        */ /*
         /// <summary>
         /// The Add
         /// </summary>
@@ -116,7 +119,7 @@
 
             return item;
         }
-
+        */ /*
         /// <summary>
         /// The RemoveRange
         /// </summary>
@@ -133,7 +136,7 @@
 
             return items;
         }
-
+        */ /*
         /// <summary>
         /// The Remove
         /// </summary>
@@ -147,7 +150,7 @@
 
             return item;
         }
-
+        */ /*
         /// <summary>
         /// The Attach
         /// </summary>
@@ -161,7 +164,7 @@
 
             return item;
         }
-
+        */ /*
         /// <summary>
         /// The Create
         /// </summary>
@@ -174,12 +177,12 @@
         /// <typeparam name="TDerivedEntity"></typeparam>
         /// <returns>The <see cref="TDerivedEntity"/></returns>
         public override TDerivedEntity Create<TDerivedEntity>() => Activator.CreateInstance<TDerivedEntity>();
-
+        */ /*
         /// <summary>
         /// Gets the Local
         /// </summary>
         public override ObservableCollection<TEntity> Local => _data;
-
+        */
         /// <summary>
         /// Gets the ElementType
         /// </summary>
@@ -206,13 +209,13 @@
         /// </summary>
         /// <returns>The <see cref="System.Collections.Generic.IEnumerator{TEntity}"/></returns>
         IEnumerator<TEntity> IEnumerable<TEntity>.GetEnumerator() => _data.GetEnumerator();
-
+        /*
         /// <summary>
         /// The GetAsyncEnumerator
         /// </summary>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.IDbAsyncEnumerator{TEntity}"/></returns>
         IAsyncEnumerator<TEntity> IAsyncEnumerator<TEntity>.GetAsyncEnumerator() => new FakeDbEnumerator<TEntity>(_data.GetEnumerator());
-
+        */
         public IAsyncEnumerator<TEntity> GetEnumerator()
         {
             throw new NotImplementedException();
