@@ -12,6 +12,9 @@
         /// </summary>
         /// <param name="args">The args<see cref="string[]"/></param>
         /// <returns>The <see cref="CrowdActDbContext"/></returns>
-        public CrowdActDbContext CreateDbContext(string[] args) => new CrowdActDbContext();
+        public CrowdActDbContext CreateDbContext(string[] args)
+        {
+            return new CrowdActDbContext();
+        }
     }
 }

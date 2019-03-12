@@ -9,7 +9,8 @@
         static void Main(string[] args)
         {
             Console.WriteLine("Hello CrowdAct!");
-            CrowdActDbContext crowdActDbContext = new CrowdActDbContext();
+            CrowdActDbContext crowdActDbContext = new CrowdActDbContextFactory().CreateDbContext(null);
+            /*CrowdActDbContext crowdActDbContext = new CrowdActDbContext();
             //Microsoft.EntityFrameworkCore.IEntityTypeConfiguration
             crowdActDbContext.Countries.AddRange(GetCountries());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
@@ -49,7 +50,7 @@
             crowdActDbContext.Skills.AddRange(GetSkills());
             Console.WriteLine("All in database: " + crowdActDbContext.SaveChanges(true));
             foreach (Skill x in crowdActDbContext.Skills)
-                Console.WriteLine(" - {0}", x.Label);
+                Console.WriteLine(" - {0}", x.Label);*/
         }
 
         #region aRegion
