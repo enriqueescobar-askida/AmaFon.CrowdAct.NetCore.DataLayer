@@ -2,12 +2,30 @@
 {
     using Microsoft.EntityFrameworkCore;
     using Entities;
+    using Interfaces;
+    using System;
 
     /// <summary>
     /// Defines the <see cref="CrowdActDbContext" />
     /// </summary>
     public partial class CrowdActDbContext : DbContext
     {
+        #region OnConfiguring
+        /// <summary>
+        /// The OnConfiguring
+        /// </summary>
+        /// <param name="optionsBuilder">The optionsBuilder<see cref="DbContextOptionsBuilder"/></param>
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
+                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=CrowdActContext-4e575f9f-8ccb-4bc7-8da6-c6328166cc54;Integrated Security=True");
+            }
+        }
+        #endregion
+
+        #region Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="CrowdActDbContext"/> class.
         /// </summary>
@@ -23,6 +41,7 @@
             : base(options)
         {
         }
+        #endregion
 
         /// <summary>
         /// Gets or sets the AccountStatuses
@@ -119,19 +138,35 @@
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
 
-        /// <summary>
-        /// The OnConfiguring
-        /// </summary>
-        /// <param name="optionsBuilder">The optionsBuilder<see cref="DbContextOptionsBuilder"/></param>
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        #region ProtectedOverride
+        /// <summary>Converts to string.</summary>
+        /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
+        public override string ToString()
         {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=CrowdActContext-4e575f9f-8ccb-4bc7-8da6-c6328166cc54;Integrated Security=True");
-            }
-        }
+            string s = "CrowdActDbContext\n";
+            s += this.AccountStatuses.ToString() + "\n";
+            s += this.Activities.ToString() + "\n";
+            s += this.ActivityLanguages.ToString() + "\n";
+            s += this.ActivityParticipants.ToString() + "\n";
+            s += this.ActivitySkills.ToString() + "\n";
+            s += this.ActivityTypes.ToString() + "\n";
+            s += this.Addresses.ToString() + "\n";
+            s += this.Categories.ToString() + "\n";
+            s += this.Charities.ToString() + "\n";
+            s += this.Cities.ToString() + "\n";
+            s += this.Countries.ToString() + "\n";
+            s += this.Languages.ToString() + "\n";
+            s += this.ParticipantCategories.ToString() + "\n";
+            s += this.ParticipantStatuses.ToString() + "\n";
+            s += this.ResourceTypes.ToString() + "\n";
+            s += this.Skills.ToString() + "\n";
+            s += this.Users.ToString() + "\n";
 
+            return s;
+        }
+        #endregion
+
+        #region OnModel
         /// <summary>
         /// The OnModelCreating
         /// </summary>
@@ -338,5 +373,6 @@
         /// </summary>
         /// <param name="modelBuilder">The modelBuilder<see cref="ModelBuilder"/></param>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+        #endregion
     }
 }

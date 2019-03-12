@@ -126,12 +126,6 @@
         /// Gets the ChangeTracker
         /// </summary>
         public ChangeTracker ChangeTracker => ChangeTracker;
-        /*
-        /// <summary>
-        /// Defines the _database
-        /// </summary>
-        private SqlServerDatabaseFacadeExtensions _database;
-        */
 
         /// <summary>
         /// Gets the SaveChangesCount
@@ -267,12 +261,6 @@
             return Task<int>.Factory.StartNew(() => 1, cancellationToken);
         }
 
-        /*
-        /// <summary>
-        /// Gets the Database
-        /// </summary>
-        public SqlServerDatabaseFacadeExtensions Database => _database;
-        */
         /// <summary>
         /// The Entry
         /// </summary>
@@ -281,9 +269,6 @@
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.DbEntityEntry{TEntity}"/></returns>
         public EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class
         {
-            /*FakeDbSet<TEntity> fakeDbSet = new FakeDbSet<TEntity>();
-
-            return (EntityEntry<TEntity>) (new FakeDbSet<TEntity>().FirstAsync<TEntity>());*/
             throw new NotImplementedException();
         }
 
@@ -305,13 +290,13 @@
         {
             throw new NotImplementedException();
         }
-        /*
-        /// <summary>
+
+        /*/// <summary>
         /// The Set
         /// </summary>
         /// <param name="entityType">The entityType<see cref="System.Type"/></param>
         /// <returns>The <see cref="System.Data.Entity.DbSet"/></returns>
-        public System.Data.Entity.DbSet Set(Type entityType)
+        public DbSet Set(Type entityType)
         {
             throw new NotImplementedException();
         }*/

@@ -33,6 +33,7 @@
         /// </summary>
         private readonly IQueryable _query;
 
+        /// <summary>Initializes a new instance of the <see cref="FakeDbSet{TEntity}"/> class.</summary>
         public FakeDbSet()
         {
             this._data = new ObservableCollection<TEntity>();
