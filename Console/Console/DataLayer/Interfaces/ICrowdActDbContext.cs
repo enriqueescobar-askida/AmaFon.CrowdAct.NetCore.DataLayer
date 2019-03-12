@@ -148,8 +148,7 @@
         /// <returns>The <see cref="EntityEntry"/></returns>
         EntityEntry Entry(object entity);
 
-        /*
-        System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
+        /*System.Data.Entity.Infrastructure.DbContextConfiguration Configuration { get; }
         System.Data.Entity.Database Database { get; }
         System.Data.Entity.DbSet Set(System.Type entityType);*/
 

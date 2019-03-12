@@ -291,16 +291,6 @@
             throw new NotImplementedException();
         }
 
-        /*/// <summary>
-        /// The Set
-        /// </summary>
-        /// <param name="entityType">The entityType<see cref="System.Type"/></param>
-        /// <returns>The <see cref="System.Data.Entity.DbSet"/></returns>
-        public DbSet Set(Type entityType)
-        {
-            throw new NotImplementedException();
-        }*/
-
         /// <summary>
         /// The Set
         /// </summary>

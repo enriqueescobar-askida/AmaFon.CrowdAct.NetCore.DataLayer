@@ -144,23 +144,23 @@
         public override string ToString()
         {
             string s = "CrowdActDbContext\n";
-            s += this.AccountStatuses.ToString() + "\n";
-            s += this.Activities.ToString() + "\n";
-            s += this.ActivityLanguages.ToString() + "\n";
-            s += this.ActivityParticipants.ToString() + "\n";
-            s += this.ActivitySkills.ToString() + "\n";
-            s += this.ActivityTypes.ToString() + "\n";
-            s += this.Addresses.ToString() + "\n";
-            s += this.Categories.ToString() + "\n";
-            s += this.Charities.ToString() + "\n";
-            s += this.Cities.ToString() + "\n";
-            s += this.Countries.ToString() + "\n";
-            s += this.Languages.ToString() + "\n";
-            s += this.ParticipantCategories.ToString() + "\n";
-            s += this.ParticipantStatuses.ToString() + "\n";
-            s += this.ResourceTypes.ToString() + "\n";
+            s += this.AccountStatuses.Local.Count + "\n";
+            s += this.Activities.Local.Count + "\n";
+            s += this.ActivityLanguages.Local.Count + "\n";
+            s += this.ActivityParticipants.Local.Count + "\n";
+            s += this.ActivitySkills.Local.Count + "\n";
+            s += this.ActivityTypes.Local.Count + "\n";
+            s += this.Addresses.Local.Count + "\n";
+            s += this.Categories.Local.Count + "\n";
+            s += this.Charities.Local.Count + "\n";
+            s += this.Cities.Local.Count + "\n";
+            s += this.Countries.Local.Count + "\n";
+            s += this.Languages.Local.Count + "\n";
+            s += this.ParticipantCategories.Local.Count + "\n";
+            s += this.ParticipantStatuses.Local.Count + "\n";
+            s += this.ResourceTypes.Local.Count + "\n";
             s += this.Skills.ToString() + "\n";
-            s += this.Users.ToString() + "\n";
+            s += this.Users.Local.Count + "\n";
 
             return s;
         }
