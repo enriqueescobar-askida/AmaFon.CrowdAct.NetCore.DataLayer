@@ -16,8 +16,10 @@
     /// Defines the <see cref="FakeDbSet{T}" />
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class FakeDbSet<TEntity> : DbSet<TEntity>, IQueryable, IEnumerable<TEntity>, IAsyncEnumerable<TEntity> where TEntity : class
+    public class FakeDbSet<TEntity> : DbSet<TEntity>,
+        IQueryable, IEnumerable<TEntity>, IAsyncEnumerable<TEntity> where TEntity : class
     {
+        #region PrivateProperties
         /// <summary>
         /// Defines the _primaryKeys
         /// </summary>
@@ -32,7 +34,9 @@
         /// Defines the _query
         /// </summary>
         private readonly IQueryable _query;
+        #endregion
 
+        #region Constructor
         /// <summary>Initializes a new instance of the <see cref="FakeDbSet{TEntity}"/> class.</summary>
         public FakeDbSet()
         {
@@ -50,6 +54,7 @@
             this._data = new ObservableCollection<TEntity>();
             this._query = this._data.AsQueryable();
         }
+        #endregion
 
         /// <summary>
         /// The Find
@@ -90,6 +95,7 @@
         /// <param name="keyValues">The keyValues<see cref="object[]"/></param>
         /// <returns>The <see cref="System.Threading.Tasks.Task{TEntity}"/></returns>
         public override Task<TEntity> FindAsync(params object[] keyValues) => Task<TEntity>.Factory.StartNew(() => this.Find(keyValues));
+
         /*
         /// <summary>
         /// The AddRange
@@ -224,7 +230,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public IAsyncEnumerator<TEntity> GetEnumerator()
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException(); // yield return this.GetEnumerator();
         }
 
         /// <summary>Gets an asynchronous enumerator over the sequence.</summary>

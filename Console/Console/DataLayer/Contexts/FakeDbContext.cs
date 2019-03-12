@@ -15,9 +15,61 @@
     /// </summary>
     public class FakeDbContext : ICrowdActDbContext
     {
+        private readonly ChangeTracker changeTracker;
+
+        public ChangeTracker ChangeTracker => changeTracker;
+
         #region PrivateAttributes
         /// Flag for disposed resources
         private bool _IsDisposed = false;
+        #endregion
+
+        #region OnConfiguring
+        #endregion
+
+        #region Constructor
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FakeDbContext"/> class.
+        /// </summary>
+        public FakeDbContext()
+        {
+            this.changeTracker = null;
+            //this._database = null;
+
+            this.AccountStatuses = new FakeDbSet<AccountStatus>("Id");
+            this.Activities = new FakeDbSet<Activity>("Id");
+            this.ActivityLanguages = new FakeDbSet<ActivityLanguage>("ActivityId", "LanguageId");
+            this.ActivityParticipants = new FakeDbSet<ActivityParticipant>("ActivityId", "ParticipantId");
+            this.ActivitySkills = new FakeDbSet<ActivitySkill>("Id");
+            this.ActivityTypes = new FakeDbSet<ActivityType>("Id");
+            this.Addresses = new FakeDbSet<Address>("Id");
+            this.Categories = new FakeDbSet<Category>("Id");
+            this.Charities = new FakeDbSet<Charity>("Id");
+            this.Cities = new FakeDbSet<City>("Id");
+            this.Countries = new FakeDbSet<Country>("Id");
+            this.Languages = new FakeDbSet<Language>("Id");
+            this.ParticipantCategories = new FakeDbSet<ParticipantCategory>("Id");
+            this.ParticipantStatuses = new FakeDbSet<ParticipantStatus>("Id");
+            this.Requirements = new FakeDbSet<Requirement>("Id");
+            this.RequirementStatuses = new FakeDbSet<RequirementStatus>("Id");
+            this.ResourceTypes = new FakeDbSet<ResourceType>("Id");
+            this.Skills = new FakeDbSet<Skill>("Id");
+            this.Users = new FakeDbSet<User>("Id");
+        }
+        #endregion
+
+        #region Destructor
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// is reclaimed by garbage collection.
+        /// This destructor will run only if the Dispose method does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructor in types derived from this class.
+        ~FakeDbContext()
+        {
+            // Do not re-create Dispose clean-up code here.
+            // Calling Dispose(false) is optimal in terms of readability and maintainability.
+            this.Dispose(false);
+        }
         #endregion
 
         #region PublicAttributes
@@ -117,66 +169,6 @@
         public virtual DbSet<User> Users { get; set; }
         #endregion
 
-        /// <summary>
-        /// Defines the _changeTracker
-        /// </summary>
-        private ChangeTracker _changeTracker;
-
-        /// <summary>
-        /// Gets the ChangeTracker
-        /// </summary>
-        public ChangeTracker ChangeTracker => ChangeTracker;
-
-        /// <summary>
-        /// Gets the SaveChangesCount
-        /// </summary>
-        public int SaveChangesCount { get; private set; }
-
-        #region Constructor
-        /// <summary>
-        /// Initializes a new instance of the <see cref="FakeDbContext"/> class.
-        /// </summary>
-        public FakeDbContext()
-        {
-            this._changeTracker = null;
-            //this._database = null;
-
-            this.AccountStatuses = new FakeDbSet<AccountStatus>("Id");
-            this.Activities = new FakeDbSet<Activity>("Id");
-            this.ActivityLanguages = new FakeDbSet<ActivityLanguage>("ActivityId", "LanguageId");
-            this.ActivityParticipants = new FakeDbSet<ActivityParticipant>("ActivityId", "ParticipantId");
-            this.ActivitySkills = new FakeDbSet<ActivitySkill>("Id");
-            this.ActivityTypes = new FakeDbSet<ActivityType>("Id");
-            this.Addresses = new FakeDbSet<Address>("Id");
-            this.Categories = new FakeDbSet<Category>("Id");
-            this.Charities = new FakeDbSet<Charity>("Id");
-            this.Cities = new FakeDbSet<City>("Id");
-            this.Countries = new FakeDbSet<Country>("Id");
-            this.Languages = new FakeDbSet<Language>("Id");
-            this.ParticipantCategories = new FakeDbSet<ParticipantCategory>("Id");
-            this.ParticipantStatuses = new FakeDbSet<ParticipantStatus>("Id");
-            this.Requirements = new FakeDbSet<Requirement>("Id");
-            this.RequirementStatuses = new FakeDbSet<RequirementStatus>("Id");
-            this.ResourceTypes = new FakeDbSet<ResourceType>("Id");
-            this.Skills = new FakeDbSet<Skill>("Id");
-            this.Users = new FakeDbSet<User>("Id");
-        }
-        #endregion
-
-        #region Destructor
-        /// Releases unmanaged resources and performs other cleanup operations before the
-        /// is reclaimed by garbage collection.
-        /// This destructor will run only if the Dispose method does not get called.
-        /// It gives your base class the opportunity to finalize.
-        /// Do not provide destructor in types derived from this class.
-        ~FakeDbContext()
-        {
-            // Do not re-create Dispose clean-up code here.
-            // Calling Dispose(false) is optimal in terms of readability and maintainability.
-            this.Dispose(false);
-        }
-        #endregion
-
         #region Disposable
         /// <summary>
         /// Releases unmanaged and - optionally - managed resources.
@@ -189,7 +181,7 @@
             {//dispose managed and unmanaged resources
                 if (isDisposing)
                 {//managed resources clean
-                    this._changeTracker = null;
+                    //this.changeTracker = null;
                     this.AccountStatuses = null;
                     this.Activities = null;
                     this.ActivityLanguages = null;
@@ -226,6 +218,22 @@
             GC.SuppressFinalize(this);
         }
         #endregion
+
+        #region Override
+        /// <summary>
+        /// The ToString
+        /// </summary>
+        /// <returns>The <see cref="string"/></returns>
+        public override string ToString() => base.ToString();
+        #endregion
+
+        #region OnModel
+        #endregion
+
+        /// <summary>
+        /// Gets the SaveChangesCount
+        /// </summary>
+        public int SaveChangesCount { get; private set; }
 
         /// <summary>
         /// The SaveChanges
@@ -300,11 +308,5 @@
         {
             throw new NotImplementedException();
         }
-
-        /// <summary>
-        /// The ToString
-        /// </summary>
-        /// <returns>The <see cref="string"/></returns>
-        public override string ToString() => base.ToString();
     }
 }

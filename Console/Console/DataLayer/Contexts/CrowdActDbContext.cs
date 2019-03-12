@@ -10,6 +10,11 @@
     /// </summary>
     public partial class CrowdActDbContext : DbContext//, ICrowdActDbContext
     {
+        #region PrivateAttributes
+        /// Flag for disposed resources
+        private bool _IsDisposed = false;
+        #endregion
+
         #region OnConfiguring
         /// <summary>
         /// The OnConfiguring
@@ -43,6 +48,21 @@
         }
         #endregion
 
+        #region Destructor
+        /// Releases unmanaged resources and performs other cleanup operations before the
+        /// is reclaimed by garbage collection.
+        /// This destructor will run only if the Dispose method does not get called.
+        /// It gives your base class the opportunity to finalize.
+        /// Do not provide destructor in types derived from this class.
+        ~CrowdActDbContext()
+        {
+            // Do not re-create Dispose clean-up code here.
+            // Calling Dispose(false) is optimal in terms of readability and maintainability.
+            this.Dispose(false);
+        }
+        #endregion
+
+        #region PublicAttributes
         /// <summary>
         /// Gets or sets the AccountStatuses
         /// </summary>
@@ -137,14 +157,59 @@
         /// Gets or sets the Users
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
+        #endregion
+
+        #region Disposable
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="isDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
+        protected void Dispose(bool isDisposing)
+        {
+            //Check if Dispose has been called
+            if (!this._IsDisposed)
+            {//dispose managed and unmanaged resources
+                if (isDisposing)
+                {//managed resources clean
+                    //this.changeTracker = null;
+                    this.AccountStatuses = null;
+                    this.Activities = null;
+                    this.ActivityLanguages = null;
+                    this.ActivityParticipants = null;
+                    this.ActivitySkills = null;
+                    this.ActivityTypes = null;
+                    this.Addresses = null;
+                    this.Categories = null;
+                    this.Charities = null;
+                    this.Cities = null;
+                    this.Countries = null;
+                    this.Languages = null;
+                    this.ParticipantCategories = null;
+                    this.ParticipantStatuses = null;
+                    this.Requirements = null;
+                    this.RequirementStatuses = null;
+                    this.ResourceTypes = null;
+                    this.Skills = null;
+                    this.Users = null;
+                }
+                //unmanaged resources clean
+
+                //confirm cleaning
+                this._IsDisposed = true;
+            }
+        }
+
+        /// <summary>
+        /// The Dispose.- Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        public override void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+        #endregion
 
         #region Override
-        /// <summary>
-        /// The Dispose
-        /// </summary>
-        /// <param name="disposing">The disposing<see cref="bool"/></param>
-        public void Dispose(bool disposing) => this.Dispose(disposing);
-
         /// <summary>Converts to string.</summary>
         /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
         public override string ToString()
