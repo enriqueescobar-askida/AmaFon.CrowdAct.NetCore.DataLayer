@@ -4,11 +4,14 @@
     using Entities;
     using Interfaces;
     using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Defines the <see cref="CrowdActDbContext" />
     /// </summary>
-    public partial class CrowdActDbContext : DbContext//, ICrowdActDbContext
+    public partial class CrowdActDbContext : DbContext, ICrowdActDbContext
     {
         #region PrivateAttributes
         /// Flag for disposed resources
@@ -164,7 +167,7 @@
         /// Releases unmanaged and - optionally - managed resources.
         /// </summary>
         /// <param name="isDisposing"><c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only unmanaged resources.</param>
-        protected void Dispose(bool isDisposing)
+        protected virtual void Dispose(bool isDisposing)
         {
             //Check if Dispose has been called
             if (!this._IsDisposed)
@@ -202,7 +205,7 @@
         /// <summary>
         /// The Dispose.- Releases unmanaged and - optionally - managed resources.
         /// </summary>
-        public override void Dispose()
+        public sealed override void Dispose()
         {
             this.Dispose(true);
             GC.SuppressFinalize(this);
@@ -234,6 +237,25 @@
             s += this.Users.Local.Count + "\n";
 
             return s;
+        }
+        #endregion
+
+        #region DbContext
+        /// <summary>
+        /// The SaveChangesAsync
+        /// </summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task{int}"/></returns>
+        public Task<int> SaveChangesAsync()
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>The GetValidationErrors</summary>
+        /// <returns>The <see cref="T:System.Collections.Generic.IEnumerable`1"/></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public IEnumerable<ValidationException> GetValidationErrors()
+        {
+            throw new NotImplementedException();
         }
         #endregion
 
@@ -439,10 +461,9 @@
             this.OnModelCreatingPartial(modelBuilder);
         }
 
-        /// <summary>
-        /// The OnModelCreatingPartial
-        /// </summary>
-        /// <param name="modelBuilder">The modelBuilder<see cref="ModelBuilder"/></param>
+        /// <summary>The OnModelCreatingPartial</summary>
+        /// <returns>The <see cref="T:System.Threading.Tasks.Task`1"/></returns>
+        /// <exception cref="NotImplementedException"></exception>
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
         #endregion
     }

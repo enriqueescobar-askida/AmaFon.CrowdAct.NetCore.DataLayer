@@ -227,6 +227,28 @@
         public override string ToString() => base.ToString();
         #endregion
 
+        #region DbContext
+        /// <summary>
+        /// The SaveChangesAsync
+        /// </summary>
+        /// <returns>The <see cref="System.Threading.Tasks.Task{int}"/></returns>
+        public Task<int> SaveChangesAsync()
+        {
+            ++SaveChangesCount;
+
+            return Task<int>.Factory.StartNew(() => 1);
+        }
+
+        /// <summary>
+        /// The GetValidationErrors
+        /// </summary>
+        /// <returns>The <see cref="System.Collections.Generic.IEnumerable{System.Data.Entity.Validation.DbEntityValidationResult}"/></returns>
+        public IEnumerable<ValidationException> GetValidationErrors()
+        {
+            throw new NotImplementedException();
+        }
+        #endregion
+
         #region OnModel
         #endregion
 
@@ -244,17 +266,6 @@
             ++SaveChangesCount;
 
             return 1;
-        }
-
-        /// <summary>
-        /// The SaveChangesAsync
-        /// </summary>
-        /// <returns>The <see cref="System.Threading.Tasks.Task{int}"/></returns>
-        public Task<int> SaveChangesAsync()
-        {
-            ++SaveChangesCount;
-
-            return Task<int>.Factory.StartNew(() => 1);
         }
 
         /// <summary>
@@ -286,15 +297,6 @@
         /// <param name="entity">The entity<see cref="object"/></param>
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.DbEntityEntry"/></returns>
         public EntityEntry Entry(object entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// The GetValidationErrors
-        /// </summary>
-        /// <returns>The <see cref="System.Collections.Generic.IEnumerable{System.Data.Entity.Validation.DbEntityValidationResult}"/></returns>
-        public IEnumerable<ValidationException> GetValidationErrors()
         {
             throw new NotImplementedException();
         }
