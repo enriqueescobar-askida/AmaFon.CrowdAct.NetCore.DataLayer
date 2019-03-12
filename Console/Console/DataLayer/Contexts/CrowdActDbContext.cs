@@ -8,7 +8,7 @@
     /// <summary>
     /// Defines the <see cref="CrowdActDbContext" />
     /// </summary>
-    public partial class CrowdActDbContext : DbContext
+    public partial class CrowdActDbContext : DbContext//, ICrowdActDbContext
     {
         #region OnConfiguring
         /// <summary>
@@ -138,7 +138,13 @@
         /// </summary>
         public virtual DbSet<User> Users { get; set; }
 
-        #region ProtectedOverride
+        #region Override
+        /// <summary>
+        /// The Dispose
+        /// </summary>
+        /// <param name="disposing">The disposing<see cref="bool"/></param>
+        public void Dispose(bool disposing) => this.Dispose(disposing);
+
         /// <summary>Converts to string.</summary>
         /// <returns>A <see cref="System.String"/> that represents this instance.</returns>
         public override string ToString()

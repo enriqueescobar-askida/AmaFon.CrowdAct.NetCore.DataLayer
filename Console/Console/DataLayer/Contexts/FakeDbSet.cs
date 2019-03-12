@@ -89,7 +89,7 @@
         /// </summary>
         /// <param name="keyValues">The keyValues<see cref="object[]"/></param>
         /// <returns>The <see cref="System.Threading.Tasks.Task{TEntity}"/></returns>
-        public override Task<TEntity> FindAsync(params object[] keyValues) => Task<TEntity>.Factory.StartNew(() => Find(keyValues));
+        public override Task<TEntity> FindAsync(params object[] keyValues) => Task<TEntity>.Factory.StartNew(() => this.Find(keyValues));
         /*
         /// <summary>
         /// The AddRange
@@ -218,11 +218,18 @@
         /// <returns>The <see cref="System.Data.Entity.Infrastructure.IDbAsyncEnumerator{TEntity}"/></returns>
         IAsyncEnumerator<TEntity> IAsyncEnumerator<TEntity>.GetAsyncEnumerator() => new FakeDbEnumerator<TEntity>(_data.GetEnumerator());
         */
+
+        /// <summary>Gets an asynchronous enumerator over the sequence.</summary>
+        /// <returns>Enumerator for asynchronous enumeration over the sequence.</returns>
+        /// <exception cref="NotImplementedException"></exception>
         public IAsyncEnumerator<TEntity> GetEnumerator()
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>Gets an asynchronous enumerator over the sequence.</summary>
+        /// <returns>Enumerator for asynchronous enumeration over the sequence.</returns>
+        /// <exception cref="NotImplementedException"></exception>
         IAsyncEnumerator<TEntity> IAsyncEnumerable<TEntity>.GetEnumerator()
         {
             throw new NotImplementedException();
